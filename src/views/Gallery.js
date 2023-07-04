@@ -1,41 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PhotoAlbum from 'react-photo-album';
-import { GraphQLClient, gql } from 'graphql-request';
 import { GalleryContainer } from './Gallery.styles';
-
-const graphcms = new GraphQLClient(
-  'https://api-eu-central-1-shared-euc1-02.hygraph.com/v2/cljo4gr6a018u01ut2wju6u97/master'
-);
-
-const QUERY = gql`
-  {
-    galleries {
-      images {
-        src: url
-        width
-        height
-      }
-    }
-  }
-`;
+import { useGetPhotos } from 'hooks/useRequest';
 
 const Gallery = () => {
-  const [images, setImages] = useState(null);
+  const { data, error, isLoading } = useGetPhotos();
 
-  useEffect(() => {
-    const fetchImages = async () => {
-      const { galleries } = await graphcms.request(QUERY);
-      setImages(galleries[0].images);
-    };
+  if (error) return <h2>Coś poszło nie tak...</h2>;
+  if (isLoading) return <h2>Wczytywanie...</h2>;
 
-    fetchImages();
-  }, []);
-
-  console.log(images);
   return (
     <GalleryContainer>
       <h2>Galeria</h2>
-      <PhotoAlbum photos={images} layout="rows" />
+      <PhotoAlbum photos={data} layout="rows" />
     </GalleryContainer>
   );
 };
