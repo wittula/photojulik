@@ -1,23 +1,6 @@
 import { styled } from 'styled-components';
-import background from 'assets/images/background.webp';
-import { SocialMediaButton } from './Header';
 
 export const Wrapper = styled.header`
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: ${({ theme }) => theme.colors.white};
-
-  background: ${({ theme }) => theme.colors.headerBackground};
-  background: radial-gradient(
-    circle at 100% 70%,
-    transparent 45%,
-    ${({ theme }) => theme.colors.headerBackground} 45.05%,
-    ${({ theme }) => theme.colors.darkPrimary} 200%
-  );
-
   h1 {
     margin: 0;
     padding: 0;
@@ -34,24 +17,6 @@ export const Wrapper = styled.header`
       font-weight: 500;
       color: ${({ theme }) => theme.colors.primary};
     }
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 30%;
-    width: 70%;
-    height: 100%;
-    z-index: -999;
-
-    background-image: linear-gradient(
-        ${({ theme }) => theme.colors.primary + '60'},
-        ${({ theme }) => theme.colors.darkPrimary + 'f0'}
-      ),
-      url(${background});
-    background-repeat: no-repeat;
-    background-size: cover;
   }
 `;
 

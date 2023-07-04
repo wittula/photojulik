@@ -3,14 +3,15 @@ import { styled } from 'styled-components';
 export const StyledFooter = styled.footer`
   display: flex;
   justify-content: space-around;
-  padding: 2% 5%;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 80px;
 
-  background-color: #111;
-  color: #777;
+  background-color: ${({ theme }) => theme.colors.headerBackground};
+  color: #666;
 
   p {
     margin: 0;
-    padding: 0;
   }
 
   a {
