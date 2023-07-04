@@ -7,8 +7,6 @@ const Pricing = () => {
   if (error) return <h2>Coś poszło nie tak...</h2>;
   if (isLoading) return <h2>Wczytywanie...</h2>;
 
-  console.log(data);
-
   return (
     <>
       <h2>Cennik</h2>
