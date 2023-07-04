@@ -14,11 +14,13 @@ export const StyledHeader = styled.header`
   color: ${({ theme }) => theme.colors.white};
   transition: background-color 0.3s ease-in-out;
 
-  padding: 0 5%;
+  padding: 0 5vw;
+  opacity: 0.75;
 
   &.scroll {
     background-color: ${({ theme }) => theme.colors.headerBackground + 'd8'};
     backdrop-filter: blur(10px);
+    opacity: 1;
   }
 `;
 
@@ -42,7 +44,7 @@ export const StyledNav = styled.nav`
 `;
 
 export const StyledLogo = styled(Logo)`
-  height: 50%;
+  height: 30px;
 `;
 
 export const StyledLink = styled(NavLink)`
@@ -56,6 +58,7 @@ export const StyledLink = styled(NavLink)`
   font-weight: 500;
   text-transform: uppercase;
   text-decoration: none;
+  letter-spacing: 1px;
   color: ${({ theme }) => theme.colors.white};
 
   border-top: 5px solid transparent;

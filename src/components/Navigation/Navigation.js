@@ -5,7 +5,6 @@ import {
   StyledLogo,
   StyledLink,
 } from './Navigation.styles';
-// import { NavLink } from 'react-router-dom';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);

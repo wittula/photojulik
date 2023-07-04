@@ -1,6 +1,12 @@
 import { styled } from 'styled-components';
 
-export const Wrapper = styled.header`
+export const Wrapper = styled.div`
+  display: flex;
+
+  div {
+    width: 50%;
+  }
+
   h1 {
     margin: 0;
     padding: 0;
@@ -12,17 +18,13 @@ export const Wrapper = styled.header`
     line-height: 1.5;
 
     font-weight: 300;
+    text-shadow: 0 0 20px #000;
 
     strong {
       font-weight: 500;
       color: ${({ theme }) => theme.colors.primary};
     }
   }
-`;
-
-export const Content = styled.div`
-  padding: 5%;
-  max-width: 50%;
 `;
 
 export const GradientText = styled.span`
