@@ -14,7 +14,7 @@ export const Content = styled.div`
   padding: 0;
   margin: 0;
 
-  @media (min-width: 720px) {
+  @media (min-width: 600px) {
     display: flex;
     width: 100%;
     height: 100%;

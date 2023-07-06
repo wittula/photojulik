@@ -5,7 +5,9 @@ import { NavLink } from 'react-router-dom';
 export const StyledHeader = styled.header`
   position: fixed;
   overflow-x: hidden;
-  /* height: 80px;
+  transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
+  transition: transform 0.3s ease-in-out;
+  /* 
   
   top: 0;
   left: 0;
@@ -41,12 +43,10 @@ export const StyledNav = styled.nav`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.headerBackground + 'e8'};
-  transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
   height: 100vh;
   height: -webkit-fill-available;
   width: 100vw;
   text-align: center;
-  transition: transform 0.3s ease-in-out;
   backdrop-filter: blur(5px);
 `;
 
