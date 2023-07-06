@@ -2,23 +2,25 @@ import { styled } from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
-
-  div {
-    width: 50%;
-  }
+  flex-direction: column;
+  padding-inline: 2%;
 
   h1 {
     margin: 0;
     padding: 0;
-    font-size: ${({ theme }) => theme.fontSize.xl};
+    font-size: ${({ theme }) => theme.fontSize.l};
+    text-align: center;
+    line-height: 1;
+    margin-bottom: 10%;
   }
 
   p {
-    font-size: ${({ theme }) => theme.fontSize.m};
+    font-size: ${({ theme }) => theme.fontSize.s};
     line-height: 1.5;
 
     font-weight: 300;
     text-shadow: 0 0 20px #000;
+    text-align: justify;
 
     strong {
       font-weight: 500;
@@ -40,7 +42,9 @@ export const GradientText = styled.span`
 
 export const SocialMediaLinks = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   list-style: none;
+  justify-content: center;
   gap: 15px;
   margin: 0;
   padding: 0;
@@ -54,12 +58,11 @@ export const StyledA = styled.a`
   justify-content: center;
   align-items: center;
 
-  width: 50px;
+  width: 40px;
   aspect-ratio: 1/1;
   border-radius: 50%;
 
   font-size: ${({ theme }) => theme.fontSize.m};
-  margin-bottom: 50px;
   transition: background-color 0.2s ease-in-out;
 
   &:hover {

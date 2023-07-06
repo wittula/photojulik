@@ -12,6 +12,7 @@ export const StyledFooter = styled.footer`
 
   p {
     margin: 0;
+    font-size: ${({ theme }) => theme.fontSize.s};
   }
 
   a {

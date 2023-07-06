@@ -4,18 +4,25 @@ import background from 'assets/images/background-m-noise.webp';
 export const Wrapper = styled.div`
   width: 100%;
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   display: grid;
   grid-template-rows: 1fr 80px;
 `;
 
 export const Content = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  padding: 2vh 5vw;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: block;
+  padding: 0;
+  margin: 0;
+
+  @media (min-width: 720px) {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 2vh 5vw;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const Main = styled.main`

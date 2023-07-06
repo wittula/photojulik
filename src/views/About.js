@@ -52,6 +52,7 @@ const SocialMediaButton = ({ name, link, icon }) => {
 const About = () => {
   return (
     <Wrapper>
+      <div></div>
       <div>
         <h1>
           Julia <GradientText>Krzebietke</GradientText>
@@ -91,7 +92,6 @@ const About = () => {
           Razem zrobimy <strong>wszystko</strong>! 📸
         </p>
       </div>
-      <div></div>
     </Wrapper>
   );
 };

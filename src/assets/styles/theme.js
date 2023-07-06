@@ -9,9 +9,9 @@ export const theme = {
     headerBackground: '#160f1c',
   },
   fontSize: {
-    xl: '45pt',
-    l: '32pt',
-    m: '16pt',
-    s: '12pt',
+    xl: '32pt',
+    l: '24pt',
+    m: '14pt',
+    s: '10pt',
   },
 };
