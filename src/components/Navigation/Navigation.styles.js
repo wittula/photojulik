@@ -7,21 +7,39 @@ export const StyledHeader = styled.header`
   overflow-x: hidden;
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
   transition: transform 0.3s ease-in-out;
-  /* 
-  
-  top: 0;
-  left: 0;
   color: ${({ theme }) => theme.colors.white};
-  transition: background-color 0.3s ease-in-out;
+  z-index: 2;
 
-  padding: 0 5vw;
-  opacity: 0.75;
+  @media (min-width: ${({ theme }) => theme.breakpoint}px) {
+    top: 0;
+    left: 0;
+    transition: background-color 0.3s ease-in-out;
+    transform: translateX(0);
+    opacity: 0.75;
 
-  &.scroll {
-    background-color: ${({ theme }) => theme.colors.headerBackground + 'd8'};
-    backdrop-filter: blur(10px);
-    opacity: 1;
-  } */
+    &.scroll {
+      background-color: ${({ theme }) => theme.colors.headerBackground + 'd8'};
+      backdrop-filter: blur(10px);
+      opacity: 1;
+    }
+
+    nav {
+      background-color: transparent;
+      flex-direction: row;
+      height: 80px;
+
+      ul {
+        flex-direction: row;
+        justify-content: flex-end;
+        height: 100%;
+        margin-inline-end: 10%;
+
+        li {
+          margin: 0;
+        }
+      }
+    }
+  }
 `;
 
 export const StyledList = styled.ul`
@@ -53,6 +71,11 @@ export const StyledNav = styled.nav`
 export const StyledLogo = styled(Logo)`
   height: 30px;
   margin: 10%;
+
+  @media (min-width: ${({ theme }) => theme.breakpoint}px) {
+    margin: 0;
+    margin-inline-start: 10%;
+  }
 `;
 
 export const StyledBurger = styled.div`
@@ -85,6 +108,10 @@ export const StyledBurger = styled.div`
     &:nth-child(3) {
       transform: ${({ open }) => (open ? 'rotate(-45deg)' : 'rotate(0)')};
     }
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoint}px) {
+    display: none;
   }
 `;
 

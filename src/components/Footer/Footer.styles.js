@@ -5,14 +5,14 @@ export const StyledFooter = styled.footer`
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  height: 80px;
+  height: 3rem;
 
   background-color: ${({ theme }) => theme.colors.headerBackground};
   color: #666;
 
   p {
     margin: 0;
-    font-size: ${({ theme }) => theme.fontSize.s};
+    font-size: ${({ theme }) => theme.fontSize.xs};
   }
 
   a {

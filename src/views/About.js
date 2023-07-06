@@ -1,6 +1,9 @@
 import React from 'react';
 import {
+  Content,
+  Description,
   GradientText,
+  ProfilePicture,
   SocialMediaLinks,
   StyledA,
   Wrapper,
@@ -12,6 +15,7 @@ import {
   faBehance,
 } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
+import avatarPhoto from 'assets/images/profile.webp';
 
 const socialMedia = [
   {
@@ -52,46 +56,54 @@ const SocialMediaButton = ({ name, link, icon }) => {
 const About = () => {
   return (
     <Wrapper>
-      <div></div>
-      <div>
-        <h1>
-          Julia <GradientText>Krzebietke</GradientText>
-        </h1>
+      <Content>
+        <ProfilePicture
+          src={avatarPhoto}
+          alt="Zdjęcie profilowe przedstawiające Julię"
+        />
+        <div>
+          <h1>
+            Julia <GradientText>Krzebietke</GradientText>
+          </h1>
 
-        <SocialMediaLinks>
-          {socialMedia.map((social) => (
-            <li key={social.name}>
-              <SocialMediaButton
-                name={social.name}
-                link={social.link}
-                icon={social.icon}
-              />
-            </li>
-          ))}
-        </SocialMediaLinks>
+          <SocialMediaLinks>
+            {socialMedia.map((social) => (
+              <li key={social.name}>
+                <SocialMediaButton
+                  name={social.name}
+                  link={social.link}
+                  icon={social.icon}
+                />
+              </li>
+            ))}
+          </SocialMediaLinks>
+        </div>
+      </Content>
+      <Content>
+        <Description>
+          <p>
+            <strong>Hej! 👋</strong>
+          </p>
 
-        <p>
-          <strong>Hej! 👋</strong>
-        </p>
+          <p>
+            Mam na imię <strong>Julia</strong>. Od małego interesowała mnie
+            fotografia. Na ogół jestem nieśmiałą osobą, ale gdy trzymam w rękach
+            aparat, czuję się odważniejsza. Z dnia na dzień czuję, że jestem
+            lepsza w tym co robię. Uczęszczałam do{' '}
+            <strong>szkoły fotograficznej</strong>, która pozwoliła mi rozwinąć
+            moje zainteresowania.
+          </p>
 
-        <p>
-          Mam na imię <strong>Julia</strong>. Od małego interesowała mnie
-          fotografia. Na ogół jestem nieśmiałą osobą, ale gdy trzymam w rękach
-          aparat, czuję się odważniejsza. Z dnia na dzień czuję, że jestem
-          lepsza w tym co robię. Uczęszczałam do{' '}
-          <strong>szkoły fotograficznej</strong>, która pozwoliła mi rozwinąć
-          moje zainteresowania.
-        </p>
+          <p>
+            Zdjęcia okazyjne oraz zdjęcia portretowe to moja specjalność, ale
+            jestem otwarta na wszystkie pomysły i gotowa do działania.
+          </p>
 
-        <p>
-          Zdjęcia okazyjne oraz zdjęcia portretowe to moja specjalność, ale
-          jestem otwarta na wszystkie pomysły i gotowa do działania.
-        </p>
-
-        <p>
-          Razem zrobimy <strong>wszystko</strong>! 📸
-        </p>
-      </div>
+          <p>
+            Razem zrobimy <strong>wszystko</strong>! 📸
+          </p>
+        </Description>
+      </Content>
     </Wrapper>
   );
 };
