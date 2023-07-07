@@ -18,7 +18,7 @@ export function useGetPhotos() {
     //     }
     //   }
     // `);
-    // return photos.images;
+    // return photos[0].images;
 
     return [];
   });

@@ -24,20 +24,19 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Content = styled.div`
+export const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding: 0 30px;
+
+  padding: 1.5rem;
+
+  color: ${({ theme }) => theme.colors.white};
 
   @media (min-width: ${({ theme }) => theme.breakpoint}px) {
     padding: 2vh 5vw;
   }
-`;
-
-export const Main = styled.main`
-  color: ${({ theme }) => theme.colors.white};
 `;

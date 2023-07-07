@@ -1,5 +1,5 @@
 import React from 'react';
-import { Content, Main } from './Template.styles';
+import { Main } from './Template.styles';
 import Footer from 'components/Footer/Footer';
 import Navigation from 'components/Navigation/Navigation';
 import { Wrapper } from './Template.styles';
@@ -7,9 +7,7 @@ import { Wrapper } from './Template.styles';
 const Template = ({ children }) => (
   <Wrapper>
     <Navigation />
-    <Main>
-      <Content>{children}</Content>
-    </Main>
+    <Main>{children}</Main>
     <Footer />
   </Wrapper>
 );
