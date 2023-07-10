@@ -6,7 +6,7 @@ export const theme = {
     black: '#181818',
     green: '#609953',
     darkGreen: '#406637',
-    error: '#CB8581',
+    error: '#FD3531',
     headerBackground: '#160f1c',
   },
   fontSize: {
