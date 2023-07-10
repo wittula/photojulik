@@ -55,3 +55,9 @@ export const StyledListItem = styled.li`
     max-width: 25vw;
   }
 `;
+
+export const Note = styled.span`
+  padding: 0.5rem;
+  background-color: ${({ theme }) => theme.colors.headerBackground + 'd0'};
+  border-radius: 0.5rem;
+`;

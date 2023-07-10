@@ -1,6 +1,6 @@
 import React from 'react';
 import { useGetPrices } from 'hooks/useRequest';
-import { StyledListItem, PriceList } from './Pricing.styles';
+import { StyledListItem, PriceList, Note } from './Pricing.styles';
 import studioBackground from 'assets/images/studio.webp';
 import plenerBackground from 'assets/images/plener.webp';
 import partyBackground from 'assets/images/party.webp';
@@ -33,14 +33,16 @@ const Pricing = () => {
         <PriceElement
           background={plenerBackground}
           description="Sesja plenerowa"
-          price={data.plener}
+          price={data.plener + '*'}
         />
         <PriceElement
           background={partyBackground}
           description="Sesja imprezowa"
-          price={data.party}
+          price={data.party + '*'}
         />
       </PriceList>
+
+      <Note>*Cena nie uwzględnia dojazdu.</Note>
     </>
   );
 };
