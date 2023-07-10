@@ -10,10 +10,12 @@ const Gallery = () => {
   if (isLoading) return <h2>Wczytywanie...</h2>;
 
   return (
-    <GalleryContainer>
-      <h2>Galeria</h2>
-      <PhotoAlbum photos={data} layout="rows" />
-    </GalleryContainer>
+    <>
+      <GalleryContainer>
+        <h2>Galeria</h2>
+        <PhotoAlbum photos={data} layout="rows" />
+      </GalleryContainer>
+    </>
   );
 };
 
