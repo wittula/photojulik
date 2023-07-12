@@ -10,7 +10,7 @@ export function useGetPhotos() {
     const { photos } = await graphQLClient.request(gql`
       {
         photos(first: 1) {
-          images {
+          images(first: 200) {
             src: url
             width
             height
