@@ -6,7 +6,7 @@ import {
   InputContainer,
   InputGroup,
 } from './ContactForm.styles';
-import React from 'react';
+import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { useRecaptcha } from 'react-hook-recaptcha';
 import { ToastContainer, toast } from 'react-toastify';
