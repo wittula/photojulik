@@ -3,11 +3,14 @@ import { Main } from './Template.styles';
 import Footer from 'components/Footer/Footer';
 import Navigation from 'components/Navigation/Navigation';
 import { Wrapper } from './Template.styles';
+import { Outlet } from 'react-router-dom';
 
-const Template = ({ children }) => (
+const Template = () => (
   <Wrapper>
     <Navigation />
-    <Main>{children}</Main>
+    <Main>
+      <Outlet />
+    </Main>
     <Footer />
   </Wrapper>
 );

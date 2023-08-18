@@ -19,15 +19,15 @@ const Root = () => {
     <Router>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Template>
-          <Routes>
-            <Route exact path="/" element={<Navigate to="/about" />}></Route>
-            <Route path="/about" element={<About />}></Route>
-            <Route path="/gallery" element={<Gallery />}></Route>
-            <Route path="/pricing" element={<Pricing />}></Route>
-            <Route path="/contact" element={<Contact />}></Route>
-          </Routes>
-        </Template>
+        <Routes>
+          <Route path="/" element={<Template />}>
+            <Route index element={<About />}></Route>
+            <Route path="/galeria" element={<Gallery />}></Route>
+            <Route path="/cennik" element={<Pricing />}></Route>
+            <Route path="/kontakt" element={<Contact />}></Route>
+            <Route path="*" element={<Navigate to="/" />}></Route>
+          </Route>
+        </Routes>
       </ThemeProvider>
     </Router>
   );

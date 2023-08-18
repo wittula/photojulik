@@ -25,22 +25,22 @@ const Navigation = () => {
           <StyledLogo />
           <StyledList open={isOpen}>
             <li>
-              <StyledLink to="/about" onClick={() => setIsOpen(!isOpen)}>
+              <StyledLink to="/" onClick={() => setIsOpen(!isOpen)}>
                 O mnie
               </StyledLink>
             </li>
             <li>
-              <StyledLink to="/gallery" onClick={() => setIsOpen(!isOpen)}>
+              <StyledLink to="/galeria" onClick={() => setIsOpen(!isOpen)}>
                 Galeria
               </StyledLink>
             </li>
             <li>
-              <StyledLink to="/pricing" onClick={() => setIsOpen(!isOpen)}>
+              <StyledLink to="/cennik" onClick={() => setIsOpen(!isOpen)}>
                 Cennik
               </StyledLink>
             </li>
             <li>
-              <StyledLink to="/contact" onClick={() => setIsOpen(!isOpen)}>
+              <StyledLink to="/kontakt" onClick={() => setIsOpen(!isOpen)}>
                 Kontakt
               </StyledLink>
             </li>
