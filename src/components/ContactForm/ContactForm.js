@@ -8,6 +8,9 @@ import {
 } from './ContactForm.styles';
 import React from 'react';
 import emailjs from '@emailjs/browser';
+import { useRecaptcha } from 'react-hook-recaptcha';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ContactForm = () => {
   const {
@@ -24,135 +27,152 @@ const ContactForm = () => {
     },
   });
 
-  // const sendEmail = (e) => {
-  //   e.preventDefault();
-  //   if (!formData.consent) return;
+  const [captchaResponse, setCaptchaResponse] = useState(null);
+  const sitekey = process.env.REACT_APP_RECAPTCHA_KEY;
+  const containerId = 'test-recaptcha';
+  const successCallback = (response) => {
+    setCaptchaResponse(response);
+  };
+  const expiredCallback = () => setCaptchaResponse(null);
 
-  //   emailjs
-  //     .sendForm(
-  //       'photojulik',
-  //       'photojulik_contact',
-  //       form.current,
-  //       process.env.REACT_APP_EMAIL_KEY
-  //     )
-  //     .then(
-  //       (result) => {
-  //         console.log(result.text);
-  //       },
-  //       (error) => {
-  //         console.log(error.text);
-  //       }
-  //     );
-  // };
+  useRecaptcha({
+    containerId,
+    successCallback,
+    expiredCallback,
+    sitekey,
+    size: 'normal',
+  });
 
   const onSubmit = (data) => {
+    if (!captchaResponse) {
+      return toast.error('Potwierdź, że jesteś człowiekiem!');
+    }
+
+    const content = { ...data, 'g-recaptcha-response': captchaResponse };
+
     emailjs
       .send(
-        'photojulik',
-        'photojulik_contact',
-        data,
-        process.env.REACT_APP_EMAIL_KEY
+        process.env.REACT_APP_EMAIL_SERVICE,
+        process.env.REACT_APP_EMAIL_TEMPLATE,
+        content,
+        process.env.REACT_APP_EMAIL_KEY,
+        'g-recaptcha-response'
       )
       .then(
-        (result) => {
-          console.log(result.text);
+        () => {
+          toast.success('Wysłano wiadomość!');
         },
-        (error) => {
-          console.log(error.text);
+        () => {
+          toast.error('Nie udało się wysłać wiadomości.');
         }
       );
     reset();
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <InputGroup>
-        <InputContainer>
-          <label htmlFor="user_name">Jak się do Ciebie zwracać?</label>
-          <input
-            id="user_name"
-            name="user_name"
-            type="text"
-            placeholder="np. Jan Kowalski"
-            {...register('user_name', { required: 'Nazwa jest wymagana!' })}
-          />
+    <>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <InputGroup>
+          <InputContainer>
+            <label htmlFor="user_name">Jak się do Ciebie zwracać?</label>
+            <input
+              id="user_name"
+              name="user_name"
+              type="text"
+              placeholder="np. Jan Kowalski"
+              {...register('user_name', { required: 'Nazwa jest wymagana!' })}
+            />
 
-          {errors.user_name?.message && (
-            <ErrorText>{errors.user_name.message}</ErrorText>
-          )}
-        </InputContainer>
+            {errors.user_name?.message && (
+              <ErrorText>{errors.user_name.message}</ErrorText>
+            )}
+          </InputContainer>
+
+          <InputContainer>
+            <label htmlFor="user_email">Twój e-mail</label>
+            <input
+              id="user_email"
+              name="user_email"
+              type="email"
+              placeholder="np. jan.kowalski@gmail.com"
+              {...register('user_email', {
+                required: 'Adres e-mail jest wymagany!',
+                validate: {
+                  matchPattern: (v) =>
+                    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+                    'Adres e-mail jest nieprawidłowy!',
+                },
+              })}
+            />
+
+            {errors.user_email?.message && (
+              <ErrorText>{errors.user_email.message}</ErrorText>
+            )}
+          </InputContainer>
+        </InputGroup>
 
         <InputContainer>
-          <label htmlFor="user_email">Twój e-mail</label>
-          <input
-            id="user_email"
-            name="user_email"
-            type="email"
-            placeholder="np. jan.kowalski@gmail.com"
-            {...register('user_email', {
-              required: 'Adres e-mail jest wymagany!',
+          <label htmlFor="message">Twoja wiadomość</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="W czym mogę Ci pomóc?"
+            {...register('message', {
+              required: 'Treść wiadomości jest wymagana!',
               validate: {
-                matchPattern: (v) =>
-                  /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
-                  'Adres e-mail jest nieprawidłowy!',
+                minLength: (v) =>
+                  v.length >= 20 || 'Twoja wiadomość jest za krótka.',
               },
             })}
           />
 
-          {errors.user_email?.message && (
-            <ErrorText>{errors.user_email.message}</ErrorText>
+          {errors.message?.message && (
+            <ErrorText>{errors.message.message}</ErrorText>
           )}
         </InputContainer>
-      </InputGroup>
+        <div>
+          <ConsentArea>
+            <input
+              id="consent"
+              name="consent"
+              type="checkbox"
+              {...register('consent', {
+                required: 'Wyrażenie zgody jest wymagane!',
+              })}
+            />
+            <label htmlFor="consent">
+              Wyrażam zgodę na przetwarzanie moich danych osobowych za pomocą{' '}
+              <a
+                href="https://www.emailjs.com/legal/privacy-policy/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                EmailJS
+              </a>{' '}
+              podanych w formularzu w celu umożliwienia dalszego kontaktu.
+            </label>
+          </ConsentArea>
 
-      <InputContainer>
-        <label htmlFor="message">Twoja wiadomość</label>
-        <textarea
-          id="message"
-          name="message"
-          placeholder="W czym mogę Ci pomóc?"
-          {...register('message', {
-            required: 'Treść wiadomości jest wymagana!',
-            validate: {
-              minLength: (v) =>
-                v.length >= 20 || 'Twoja wiadomość jest za krótka.',
-            },
-          })}
-        />
-
-        {errors.message?.message && (
-          <ErrorText>{errors.message.message}</ErrorText>
-        )}
-      </InputContainer>
-      <div>
-        <ConsentArea>
-          <input
-            id="consent"
-            name="consent"
-            type="checkbox"
-            {...register('consent', {
-              required: 'Wyrażenie zgody jest wymagane!',
-            })}
-          />
-          <label htmlFor="consent">
-            Wyrażam zgodę na przetwarzanie moich danych osobowych za pomocą{' '}
-            <a
-              href="https://www.emailjs.com/legal/privacy-policy/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              EmailJS
-            </a>{' '}
-            podanych w formularzu w celu umożliwienia dalszego kontaktu.
-          </label>
-        </ConsentArea>
-
-        {errors.consent?.message && (
-          <ErrorText>{errors.consent.message}</ErrorText>
-        )}
-      </div>
-      <input type="submit" value="Wyślij wiadomość" />
-    </Form>
+          {errors.consent?.message && (
+            <ErrorText>{errors.consent.message}</ErrorText>
+          )}
+        </div>
+        <div id={containerId} className="g-recaptcha" />
+        <input type="submit" value="Wyślij wiadomość" />
+      </Form>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+    </>
   );
 };
 
