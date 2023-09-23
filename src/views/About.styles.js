@@ -58,28 +58,43 @@ export const Description = styled.div`
   align-items: flex-start;
   gap: 0.5rem;
 
-  p {
-    font-size: ${({ theme }) => theme.fontSize.xs};
-    line-height: 1.5;
-
-    font-weight: 300;
-
-    background-color: ${({ theme }) => theme.colors.headerBackground + 'a8'};
-    backdrop-filter: blur(5px);
-    display: inline-block;
-    margin: 0;
-    padding: 0.75rem;
-    border-radius: 15px;
-    border-bottom-left-radius: 1px;
-
-    strong {
-      font-weight: 500;
-      color: ${({ theme }) => theme.colors.primary};
-    }
-  }
   @media (min-width: ${({ theme }) => theme.breakpoint}px) {
     p {
       font-size: ${({ theme }) => theme.fontSize.s};
+    }
+  }
+`;
+
+export const StyledMessage = styled.p`
+  opacity: 0;
+  animation: appearMessage 0.5s forwards;
+  animation-delay: ${({ delay }) => delay || 0}s;
+  font-size: ${({ theme }) => theme.fontSize.xs};
+  line-height: 1.5;
+
+  font-weight: 300;
+
+  background-color: ${({ theme }) => theme.colors.headerBackground + 'a8'};
+  backdrop-filter: blur(5px);
+  display: inline-block;
+  margin: 0;
+  padding: 0.75rem;
+  border-radius: 15px;
+  border-bottom-left-radius: 1px;
+
+  strong {
+    font-weight: 500;
+    color: ${({ theme }) => theme.colors.primary};
+  }
+
+  @keyframes appearMessage {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(1);
     }
   }
 `;

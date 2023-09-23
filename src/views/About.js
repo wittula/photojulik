@@ -6,44 +6,12 @@ import {
   ProfilePicture,
   SocialMediaLinks,
   StyledA,
+  StyledMessage,
   Wrapper,
 } from './About.styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faFacebookF,
-  faInstagram,
-  faBehance,
-} from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
+import socialMedia from 'data/socials';
 import avatarPhoto from 'assets/images/profile.webp';
-
-const socialMedia = [
-  {
-    name: 'Facebook',
-    link: 'https://www.facebook.com/krzebietkejulia',
-    icon: faFacebookF,
-  },
-  {
-    name: 'Instagram',
-    link: 'https://www.instagram.com/photo.juliik/',
-    icon: faInstagram,
-  },
-  {
-    name: 'Behance',
-    link: 'https://www.behance.net/photojulik',
-    icon: faBehance,
-  },
-  {
-    name: 'Mail',
-    link: 'mailto:photo.julik@gmail.com',
-    icon: faEnvelope,
-  },
-  {
-    name: 'Phone',
-    link: 'tel:+48667270099',
-    icon: faPhone,
-  },
-];
 
 const SocialMediaButton = ({ name, link, icon }) => {
   return (
@@ -67,12 +35,12 @@ const About = () => {
           </h1>
 
           <SocialMediaLinks>
-            {socialMedia.map((social) => (
-              <li key={social.name}>
+            {Object.values(socialMedia).map((value) => (
+              <li key={value.name}>
                 <SocialMediaButton
-                  name={social.name}
-                  link={social.link}
-                  icon={social.icon}
+                  name={value.name}
+                  link={value.link + value.value}
+                  icon={value.icon}
                 />
               </li>
             ))}
@@ -81,27 +49,27 @@ const About = () => {
       </Content>
       <Content>
         <Description>
-          <p>
+          <StyledMessage delay=".5">
             <strong>Hej! 👋</strong>
-          </p>
+          </StyledMessage>
 
-          <p>
+          <StyledMessage delay="1">
             Mam na imię <strong>Julia</strong>. Od małego interesowała mnie
             fotografia. Na ogół jestem nieśmiałą osobą, ale gdy trzymam w rękach
             aparat, czuję się odważniejsza. Z dnia na dzień czuję, że jestem
             lepsza w tym co robię. Uczęszczałam do{' '}
             <strong>szkoły fotograficznej</strong>, która pozwoliła mi rozwinąć
             moje zainteresowania.
-          </p>
+          </StyledMessage>
 
-          <p>
+          <StyledMessage delay="1.5">
             Zdjęcia okazyjne oraz zdjęcia portretowe to moja specjalność, ale
             jestem otwarta na wszystkie pomysły i gotowa do działania.
-          </p>
+          </StyledMessage>
 
-          <p>
+          <StyledMessage delay="2">
             Razem zrobimy <strong>wszystko</strong>! 📸
-          </p>
+          </StyledMessage>
         </Description>
       </Content>
     </Wrapper>

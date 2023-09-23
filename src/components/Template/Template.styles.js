@@ -31,12 +31,18 @@ export const Main = styled.main`
   justify-content: center;
   width: 100%;
   height: 100%;
+  gap: 1rem;
 
   padding: 1.5rem;
 
   color: ${({ theme }) => theme.colors.white};
 
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
+
   @media (min-width: ${({ theme }) => theme.breakpoint}px) {
-    padding: 2vh 5vw;
+    padding: 80px 5vw;
   }
 `;

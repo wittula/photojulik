@@ -1,5 +1,18 @@
 import React from 'react';
 import { useGetPrices } from 'hooks/useRequest';
+import { StyledListItem, PriceList, Note } from './Pricing.styles';
+import studioBackground from 'assets/images/studio.webp';
+import plenerBackground from 'assets/images/plener.webp';
+import partyBackground from 'assets/images/party.webp';
+
+const PriceElement = ({ background, description, price }) => {
+  return (
+    <StyledListItem background={background}>
+      <span>{description}</span>
+      <span>{price}</span>
+    </StyledListItem>
+  );
+};
 
 const Pricing = () => {
   const { data, error, isLoading } = useGetPrices();
@@ -10,9 +23,26 @@ const Pricing = () => {
   return (
     <>
       <h2>Cennik</h2>
-      <p>Sesja studio: {data.studio}</p>
-      <p>Sesja plener: {data.plener}</p>
-      <p>Sesja imprezowa: {data.party}</p>
+
+      <PriceList>
+        <PriceElement
+          background={studioBackground}
+          description="Sesja studio"
+          price={data.studio}
+        />
+        <PriceElement
+          background={plenerBackground}
+          description="Sesja plenerowa"
+          price={data.plener + '*'}
+        />
+        <PriceElement
+          background={partyBackground}
+          description="Sesja imprezowa"
+          price={data.party + '*'}
+        />
+      </PriceList>
+
+      <Note>*Cena nie uwzględnia dojazdu.</Note>
     </>
   );
 };

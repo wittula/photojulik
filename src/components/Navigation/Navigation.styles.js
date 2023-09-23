@@ -62,7 +62,6 @@ export const StyledNav = styled.nav`
   align-items: center;
   background-color: ${({ theme }) => theme.colors.headerBackground + 'e8'};
   height: 100vh;
-  height: -webkit-fill-available;
   width: 100vw;
   text-align: center;
   backdrop-filter: blur(5px);
